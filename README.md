@@ -212,7 +212,8 @@ The following command generated continuous traffic:
 kubectl run -it --rm load --image=busybox --restart=Never -- /bin/sh -c "while true; do wget -q -O- http://flask-service.fa-assignment.svc.cluster.local:5000/; done"
 
 
-Screenshot: ./screenshots/load-generator.jpeg
+Screenshot: ![Load Generator](./screenshots/load-generator.jpeg)
+
 
 # 2. Horizontal Pod Autoscaler (HPA) Metrics
 
@@ -220,7 +221,7 @@ After load generation, HPA detected increased CPU usage.
 
 It began evaluating metrics to scale replicas.
 
-Screenshot: ./screenshots/pods-scalling.jpeg
+Screenshot: ![HPA Scaling](./screenshots/hpa-scalling.jpeg)
 
 Target CPU: 70%
 
@@ -236,6 +237,6 @@ HPA confirmed that scaling logic was working.
 
 As CPU load increased, Kubernetes automatically scaled the Flask Deployment from 2 pods to more replicas.
 
-Screenshot: ./screenshots/hpa-scalling.jpeg
+Screenshot: ![Pods Scaling](./screenshots/pods-scalling.jpeg)
 
 This confirms the HPA correctly created additional pods under load.
