@@ -199,3 +199,43 @@ PV/PVC → persistent data for MongoDB
 Secrets → secure credentials
 
 Internal DNS → reliable service-to-service communication
+
+
+## 11. Autoscaling Test Results (HPA) — With Screenshots
+
+To validate Horizontal Pod Autoscaling, I generated continuous traffic on the Flask application using a BusyBox load generator inside the cluster.
+
+# 1. Load Generation (BusyBox Load Pod)
+
+The following command generated continuous traffic:
+
+kubectl run -it --rm load --image=busybox --restart=Never -- /bin/sh -c "while true; do wget -q -O- http://flask-service.fa-assignment.svc.cluster.local:5000/; done"
+
+
+Screenshot: ./screenshots/load-generator.jpeg
+
+# 2. Horizontal Pod Autoscaler (HPA) Metrics
+
+After load generation, HPA detected increased CPU usage.
+
+It began evaluating metrics to scale replicas.
+
+Screenshot: ./screenshots/pods-scalling.jpeg
+
+Target CPU: 70%
+
+Observed CPU: Increased under load
+
+Min Replicas: 2
+
+Max Replicas: 5
+
+HPA confirmed that scaling logic was working.
+
+# 3. Pod Scaling (Replicas Increase)
+
+As CPU load increased, Kubernetes automatically scaled the Flask Deployment from 2 pods to more replicas.
+
+Screenshot: ./screenshots/hpa-scalling.jpeg
+
+This confirms the HPA correctly created additional pods under load.
