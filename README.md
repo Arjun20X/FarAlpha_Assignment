@@ -205,7 +205,7 @@ Internal DNS → reliable service-to-service communication
 
 To validate Horizontal Pod Autoscaling, I generated continuous traffic on the Flask application using a BusyBox load generator inside the cluster.
 
-# 1. Load Generation (BusyBox Load Pod)
+1. Load Generation (BusyBox Load Pod)
 
 The following command generated continuous traffic:
 
@@ -215,7 +215,7 @@ kubectl run -it --rm load --image=busybox --restart=Never -- /bin/sh -c "while t
 Screenshot: ![Load Generator](./screenshots/load-generator.jpeg)
 
 
-# 2. Horizontal Pod Autoscaler (HPA) Metrics
+2. Horizontal Pod Autoscaler (HPA) Metrics
 
 After load generation, HPA detected increased CPU usage.
 
@@ -233,7 +233,7 @@ Max Replicas: 5
 
 HPA confirmed that scaling logic was working.
 
-# 3. Pod Scaling (Replicas Increase)
+3. Pod Scaling (Replicas Increase)
 
 As CPU load increased, Kubernetes automatically scaled the Flask Deployment from 2 pods to more replicas.
 
