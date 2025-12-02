@@ -48,29 +48,24 @@ Persistent storage via PV/PVC (5Gi)
 Install these on Windows:
 
 Tool	Status
-Python 3.8+	✔
-Docker Desktop	✔
-Minikube	✔
-kubectl	✔
+Python 3.8+	
+Docker Desktop	
+Minikube	
+kubectl	
 Metrics Server	must enable
 
 Enable metrics server (Windows PowerShell):
 
 minikube addons enable metrics-server
 
-## 3. Build Docker Image (Windows PowerShell Version)
-Option A — Build inside Minikube (RECOMMENDED)
-
+## 3. Build Docker Image 
+Build inside Minikube
 This avoids DockerHub completely.
 
 minikube -p minikube docker-env | Invoke-Expression
 docker build -t flask-mongo-app:1.0 .
 
-Option B — Using DockerHub
-docker build -t <your-dockerhub-username>/flask-mongo-app:1.0 .
-docker push <your-dockerhub-username>/flask-mongo-app:1.0
-
-## 4. Kubernetes Deployment (Windows Commands)
+## 4. Kubernetes Deployment
 
 All commands must be executed from project root:
 
@@ -115,8 +110,8 @@ http://127.0.0.1:55275
 
 Open in browser.
 
-## 6. Test Autoscaling (Windows Version)
-Start load generator (IMPORTANT: Windows-compatible)
+## 6. Test Autoscaling 
+Start load generator 
 kubectl run -it --rm load --image=busybox --restart=Never -- /bin/sh -c "while true; do wget -q -O- http://flask-service.fa-assignment.svc.cluster.local:5000/; done"
 
 Watch HPA
